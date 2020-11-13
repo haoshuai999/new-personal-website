@@ -22,10 +22,14 @@ function App(props) {
     />
   ));
 
+  function alertMessage(name) {
+    alert(name);
+  }
+
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
-      <Form />
+      <Form message = {alertMessage}/>
       <div className="filters btn-group stack-exception">
         {buttonList}
       </div>
