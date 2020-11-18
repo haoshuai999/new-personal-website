@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function Form(props) {
-    const [name, setName] = useState('');
+    const [name, setName] = useState("");
 
     function handleSubmit(e) {
       e.preventDefault();
