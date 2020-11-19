@@ -20,9 +20,25 @@ function App(props) {
     setTasks(updatedTasks);
   }
 
+  function addNewTask(name) {
+    const newTask = {id: "todo-" + nanoid(), name: name, completed: false};
+    setTasks([...tasks, newTask]);
+  }
+
   function deleteTask(id) {
     const remainingTasks = tasks.filter(task => id !== task.id);
     setTasks(remainingTasks);
+  }
+
+  function editTask(id, newName) {
+    const editedTasks = tasks.map(task => {
+      if (id === task.id) {
+        //
+        return {...task, name: newName};
+      }
+      return task;
+    })
+    setTasks(editedTasks);
   }
 
   const taskList = tasks.map(task => (
@@ -33,6 +49,7 @@ function App(props) {
       key={task.id}
       toggleTaskCompleted = {toggleTaskCompleted}
       taskDeleted = {deleteTask}
+      taskEdited = {editTask}
      />
   ));
 
@@ -47,14 +64,10 @@ function App(props) {
 
   const tasksNoun = taskList.length === 1 ? 'task' : 'tasks';
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
+  
   // function alertMessage(name) {
   //   alert(name);
   // }
-
-  function addNewTask(name) {
-    const newTask = {id: "todo-" + nanoid(), name: name, completed: false};
-    setTasks([...tasks, newTask]);
-  }
 
   return (
     <div className="todoapp stack-large">
